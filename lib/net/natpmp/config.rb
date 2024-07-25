@@ -17,10 +17,12 @@ module Net
         bind_port: BIND_PORT
       )
 
-        @bind_address = bind_address
+        @bind_address = IPAddr.new(bind_address)
         @bind_port = bind_port
-        @gw = gw
+        @gw = IPAddr.new(gw)
         @port = port
+      rescue IPAddr::InvalidAddressError
+        raise InvalidParameter, 'Value must be a valid IP Address'
       end
     end
   end

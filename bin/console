@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+require 'irb'
+require_relative '../lib/net/natpmp'
+
+def reload!
+  puts 'Reloading ...'
+
+  root_dir = File.expand_path('..', __dir__)
+
+  # What dirs to reload
+  reload_dirs = %w[lib]
+
+  # avoid seeing the warning about re-defing contants
+  original_verbose = $VERBOSE
+  $VERBOSE = nil
+
+  reload_dirs.each do |dir|
+    Dir.glob("#{root_dir}/#{dir}/**/*.rb").each { |f| load(f) }
+  end
+
+  $VERBOSE = original_verbose
+
+  true
+end
+
+IRB.start

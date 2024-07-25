@@ -11,21 +11,18 @@ require_relative 'natpmp/responses'
 module Net
   # Main class
   module NATPMP
-    # Instantiate class with default params
-    # bind address, bind port, remote gw, remote port
-    def self.client(params)
-      return Client.new(params) if params.is_a?(Config)
+    # Instantiate class with default params.
+    # Takes a config instance or any other params.
+    # :gw is mandatory if config instance not provided
+    def self.client(config)
+      return Client.new(config) if config.is_a?(Config)
 
-      raise Net::NATPMP::Exception, 'required param :gw' unless params[:gw]
+      unless config[:gw]
+        raise Net::NATPMP::Exception,
+              'Gateway is missing. Call with: Net::NATPMP.client(gw: "x.x.x.x")'
+      end
 
-      config_params = {
-        bind_address: params[:bind_address] || Config::BIND_ADDRESS,
-        bind_port: params[:bind_port] || Config::BIND_PORT,
-        port: params[:port] || Config::NATPMP_PORT,
-        gw: params[:gw]
-      }
-
-      Client.new(Config.new(**config_params))
+      Client.new(Config.new(**config))
     end
   end
 end
