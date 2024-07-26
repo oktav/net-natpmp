@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-# ENV['HOME'] ||= ENV['HOMEPATH'] ? "#{ENV['HOMEDRIVE']}#{ENV['HOMEPATH']}" : Dir.pwd
-
+require_relative 'natpmp/constants'
 require_relative 'natpmp/config'
 require_relative 'natpmp/client'
 require_relative 'natpmp/errors'
