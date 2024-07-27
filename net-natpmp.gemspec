@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name                  = 'net-natpmp'
-  s.version               = '0.1.0'
+  s.version               = '0.1.1'
   s.summary               = 'NAT-PMP client for Ruby'
   s.description           = <<-DESC
     A NAT-PMP client for Ruby.
@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.email                 = 'octav@devroot.dev'
   s.files                 = Dir['README.md', 'LICENSE', 'lib/**/*.rb']
   s.platform              = Gem::Platform::RUBY
-  s.homepage              = 'https://rubygems.org/gems/net-natpmp'
+  s.homepage              = 'https://github.com/oktav/net-natpmp'
   s.license               = 'MIT'
   s.required_ruby_version = '>= 3.0'
 end
